@@ -1,3 +1,5 @@
+# [WIP]動作確認できていないので、手順確認して要修正
+
 ### git cloneでリポジトリのコピー
 
 `git clone  xxxxxこのリポジトリxxxxxx`
