@@ -1,0 +1,10 @@
+/** Add Your Own Style!! **/
+ul.errors li {
+  background: #f2dede;
+  padding:5px;
+  font-weight: bold;
+  width:300px;
+  list-style: none;
+}
+
+#editor {overflow:scroll; max-height:300px;}

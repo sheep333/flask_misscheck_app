@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% from "_formhelper.html" import render_field %}
+
+{% block page_content %}
+<style>
+        table,tr,th,td{
+            border:medium solid #aaaaaa;
+            padding:20px;
+        }
+        table{
+            margin:20px;
+        }
+</style>
+<div class="row">
+    <div style="margin-left:auto;margin-right:auto;width:900px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2>最新のミス</h2>
+            </div>
+            <div class="panel-body">
+                <table>
+                {% for miss in miss_lists %}
+                    <tr><td><a href="{{ url_for('.miss',miss_id=miss.id) }}">{{ miss.title }}</a></td><td><a href ="{{ url_for('.category',category_id=miss.category_id) }}">{{ miss.miss_category.title}}</a></td></tr>
+                {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div><!-- ./row-->
+{% endblock %}

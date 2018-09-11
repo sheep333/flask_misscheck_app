@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<div class="row">
+    <h4>登録したミス一覧</h4>
+    <ul class="list-group">
+    {% for miss in misses %}
+        <li class="list-group-item">
+            <a href="{{ url_for('.miss',miss_id=miss.id) }}">●ミスの概要：{{ miss.title }} ●カテゴリー:{{miss.miss_category.title}}</a>
+        </li>
+    </ul>
+    {% endfor %}    
+</div><!-- ./row-->    
+{% endblock %}

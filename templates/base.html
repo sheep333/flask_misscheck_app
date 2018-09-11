@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+{% block head %}
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pythonでサクッと作るWebアプリ</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+{% block exhead %}{% endblock %}
+{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url_for('.index') }}">ミス記録アプリ</a>
+        </div>
+        <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            {% if 'auth.user' in session %}
+                <li><a href="{{ url_for('.add_cat')}}">カテゴリー追加</a></li>
+                <li><a href="{{ url_for('.add_miss')}}">ミス追加</a></li>
+                <!--<li><a href="{{ url_for('.add_post') }}"> 記事投稿</a></li>-->
+                <li><a href="{{ url_for('.logout') }}" onclick="return confirm('ログアウトしてもよろしいですか？')">ログアウト</a></li>
+                <li><a style ="font-weight: bold">ようこそ、{{ session['auth.user']['username'] }}さん</a></li>
+            {% else %}
+                <li><a href="{{ url_for('.signup') }}">ユーザー登録</a></li>
+                <li><a href="{{ url_for('.login') }}">ログイン</a></li>
+            {% endif %}
+        </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% block page_content %}{% endblock %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="//cdn.ckeditor.com/4.5.11/basic/ckeditor.js"></script>
+<script>CKEDITOR.replace( 'editor' );</script>
+{% block extrajs %}{% endblock %}
+{% endblock %}
