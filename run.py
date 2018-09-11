@@ -5,7 +5,7 @@ from datetime import datetime, date
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'ttcxgRRgEFRAb5LR3akzrExXmyU4_f5A'
+app.config['SECRET_KEY'] = 'xxxxxxcsrfを作って入れてね！xxxxxx' #flask.csrfモジュールを使うのがよさそう
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///misscheck.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['FLASK_ENV'] = True;
